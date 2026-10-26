@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..700&family=Manrope:wght@400;500;600;700&display=swap');
+
+:root {
+  color-scheme: dark;
+  --color-bg: 0 0 0;
+  --color-surface: 34 34 34;
+  --color-border: 34 34 34;
+  --color-text: 255 255 255;
+  --color-muted: 136 136 136;
+  --color-accent: 229 229 229;
+  --grid-line: rgba(136, 136, 136, 0.12);
+  --section-number: rgba(255, 255, 255, 0.1);
+  --selection-bg: #E5E5E5;
+  --selection-text: #000000;
+  --scrollbar-thumb: #888888;
+  --scrollbar-track: #222222;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --color-bg: 255 255 255;
+  --color-surface: 229 229 229;
+  --color-border: 229 229 229;
+  --color-text: 0 0 0;
+  --color-muted: 34 34 34;
+  --color-accent: 34 34 34;
+  --grid-line: rgba(136, 136, 136, 0.16);
+  --section-number: rgba(34, 34, 34, 0.12);
+  --selection-bg: #222222;
+  --selection-text: #FFFFFF;
+  --scrollbar-thumb: #888888;
+  --scrollbar-track: #E5E5E5;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; background: rgb(var(--color-bg)); }
+  body { @apply bg-brand-bg font-inter text-brand-text antialiased; }
+  ::selection { background: var(--selection-bg); color: var(--selection-text); }
+  :focus-visible { @apply outline-none ring-2 ring-brand-accent ring-offset-2 ring-offset-brand-bg; }
+}
+
+@layer utilities {
+  :root[data-theme='light'] .brand-logo { filter: invert(1); }
+  .hero-grid {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+  .section-number { -webkit-text-stroke: 1px var(--section-number); color: transparent; }
+  .project-carousel-track {
+    display: grid;
+    grid-auto-columns: minmax(84%, 1fr);
+    grid-auto-flow: column;
+    gap: 1rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    padding: 0.15rem 0.15rem 1rem;
+    scroll-padding-inline: 0.15rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    scrollbar-width: thin;
+  }
+  .project-carousel-track > * { min-width: 0; scroll-snap-align: start; }
+  @media (min-width: 640px) {
+    .project-carousel-track { grid-auto-columns: minmax(48%, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .project-carousel-track { grid-auto-columns: minmax(0, 32%); }
+  }
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 999px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .down-arrow { animation: drift-down 1.8s ease-in-out infinite; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+@keyframes drift-down { 50% { transform: translateY(7px); } }
