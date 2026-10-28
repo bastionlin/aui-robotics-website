@@ -5,17 +5,13 @@ export default {
     extend: {
       colors: {
         brand: {
-          bg: 'rgb(var(--color-bg) / <alpha-value>)',
-          surface: 'rgb(var(--color-surface) / <alpha-value>)',
-          border: 'rgb(var(--color-border) / <alpha-value>)',
-          text: 'rgb(var(--color-text) / <alpha-value>)',
-          muted: 'rgb(var(--color-muted) / <alpha-value>)',
-          accent: 'rgb(var(--color-accent) / <alpha-value>)',
+          bg: '#000000', surface: '#222222', border: '#888888',
+          text: '#FFFFFF', muted: '#E5E5E5', accent: '#FFFFFF',
         },
       },
       fontFamily: {
-        space: ['Archivo', 'sans-serif'],
-        inter: ['Manrope', 'sans-serif'],
+        space: ['Montserrat', 'sans-serif'],
+        inter: ['DM Sans', 'sans-serif'],
       },
     },
   },

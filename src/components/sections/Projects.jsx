@@ -1,45 +1,60 @@
-import { useRef } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useReducedMotion } from 'framer-motion';
-import SectionHeader from '../ui/SectionHeader';
-import ProjectCard from '../ui/ProjectCard';
-import FadeContent from '../ui/FadeContent';
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { ArrowUpRight, ArrowRight, Circle } from 'lucide-react';
 import { projects } from '../../data/projects';
+import { mailLink } from '../../lib/club';
+import SectionHeader from '../ui/SectionHeader';
+import FadeContent from '../ui/FadeContent';
 
-/**
- * Shows the active, completed, and planned work maintained by the club.
- * Project content is supplied from the dedicated data module for simple updates.
- */
+const filters = ['All', 'Active', 'Completed', 'Upcoming'];
+
 export default function Projects() {
-  const trackRef = useRef(null);
-  const reduceMotion = useReducedMotion();
-  const scrollProjects = (direction) => {
-    const track = trackRef.current;
-    if (!track) return;
-    const card = track.firstElementChild;
-    const gap = Number.parseFloat(window.getComputedStyle(track).columnGap) || 16;
-    const step = (card?.getBoundingClientRect().width || track.clientWidth * 0.82) + gap;
-    track.scrollBy({ left: direction * step, behavior: reduceMotion ? 'auto' : 'smooth' });
+  const [filter, setFilter] = useState('All');
+  const [selectedTitle, setSelectedTitle] = useState(projects[0]?.title);
+  const [horizontal, setHorizontal] = useState(false);
+  const reduced = useReducedMotion();
+  useEffect(() => {
+    const query = window.matchMedia('(max-width: 700px)');
+    const sync = () => setHorizontal(query.matches);
+    sync();
+    query.addEventListener('change', sync);
+    return () => query.removeEventListener('change', sync);
+  }, []);
+  const visible = projects.filter((project) => filter === 'All' || project.status === filter);
+  const selected = visible.find((project) => project.title === selectedTitle) || visible[0];
+  const activeIndex = visible.indexOf(selected);
+  const keyDown = (event, index) => {
+    let next;
+    if (event.key === 'ArrowDown' || event.key === 'ArrowRight') next = (index + 1) % visible.length;
+    if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') next = (index - 1 + visible.length) % visible.length;
+    if (event.key === 'Home') next = 0;
+    if (event.key === 'End') next = visible.length - 1;
+    if (next === undefined) return;
+    event.preventDefault();
+    setSelectedTitle(visible[next].title);
+    document.getElementById(`project-tab-${projects.indexOf(visible[next])}`).focus();
   };
 
-  return (
-    <section id="projects" className="bg-brand-surface py-24 md:py-36">
-      <div className="mx-auto max-w-7xl px-6 md:px-12">
-        <FadeContent>
-          <SectionHeader number="02" title="What We&apos;re Building Right Now" subtitle="From rapid prototypes to competition-ready machines, our work connects software with the physical world." />
-        </FadeContent>
-        <div className="mb-5 flex justify-end gap-2">
-          <button type="button" aria-label="Scroll projects left" aria-controls="project-carousel" onClick={() => scrollProjects(-1)} className="flex h-11 w-11 items-center justify-center rounded-full border border-brand-border text-brand-text transition hover:border-brand-accent hover:bg-brand-bg focus-visible:ring-2 focus-visible:ring-brand-accent">
-            <ChevronLeft size={20} aria-hidden="true" />
-          </button>
-          <button type="button" aria-label="Scroll projects right" aria-controls="project-carousel" onClick={() => scrollProjects(1)} className="flex h-11 w-11 items-center justify-center rounded-full border border-brand-border text-brand-text transition hover:border-brand-accent hover:bg-brand-bg focus-visible:ring-2 focus-visible:ring-brand-accent">
-            <ChevronRight size={20} aria-hidden="true" />
-          </button>
+  return <section id="projects" tabIndex={-1} className="section tone-dark projects" data-pattern="sticky-index">
+    <div className="section-inner">
+      <SectionHeader number="02" eyebrow="Project index" />
+      <FadeContent className="projects-heading"><h2>From first prototype<br />to next possibility.</h2><p className="lead-copy">Ground robots. Aerial systems. Intelligent machines. Explore the work that connects what we learn to what we can build.</p></FadeContent>
+      <div className="project-toolbar"><span className="small-label">{String(projects.length).padStart(2, '0')} projects / One shared ambition</span><div className="project-filters" role="group" aria-label="Filter projects by status">{filters.map((item) => <button key={item} type="button" aria-pressed={filter === item} onClick={() => setFilter(item)}>{item}<span>{item === 'All' ? projects.length : projects.filter((p) => p.status === item).length}</span></button>)}</div></div>
+      {selected ? <div className="project-explorer">
+        <div className="project-index" role="tablist" aria-label="Robotics projects" aria-orientation={horizontal ? 'horizontal' : 'vertical'}>{visible.map((project, index) => {
+          const id = projects.indexOf(project);
+          return <button key={project.title} id={`project-tab-${id}`} type="button" role="tab" aria-selected={project === selected} aria-controls="project-detail" tabIndex={project === selected ? 0 : -1} onKeyDown={(event) => keyDown(event, index)} onClick={() => setSelectedTitle(project.title)}><span className="project-number">{String(id + 1).padStart(2, '0')}</span><span>{project.title}<small>{project.category}</small></span><ArrowRight size={19} aria-hidden="true" /></button>;
+        })}</div>
+        <div id="project-detail" className="project-detail" role="tabpanel" aria-labelledby={`project-tab-${projects.indexOf(selected)}`} tabIndex={0}>
+          <AnimatePresence mode="wait"><motion.article key={selected.title} initial={reduced ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: reduced ? 0 : 0.15 }}>
+            <div className="project-detail-top"><span className="small-label">{selected.category}</span><span className="project-status"><Circle size={6} fill="currentColor" aria-hidden="true" />{selected.status}</span></div>
+            <h3>{selected.title}</h3><p>{selected.description}</p>
+            <div className="project-stack"><span className="small-label">Built with</span><ul>{selected.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul></div>
+            <a className="text-link" href={mailLink(`AUI Robotics - ${selected.title}`)}>Get involved <ArrowUpRight size={18} /></a>
+          </motion.article></AnimatePresence>
+          <p className="project-position">{String(activeIndex + 1).padStart(2, '0')} / {String(visible.length).padStart(2, '0')}</p>
         </div>
-        <div id="project-carousel" ref={trackRef} role="region" aria-label="Robotics projects" tabIndex={0} className="project-carousel-track">
-          {projects.map((project) => <ProjectCard key={project.title} project={project} />)}
-        </div>
-      </div>
-    </section>
-  );
+      </div> : <p className="empty-state">No projects in this category yet.</p>}
+    </div>
+  </section>;
 }

@@ -1,36 +1,37 @@
 # AUI Robotics Club Website
 
-The official single-page website for AUI Robotics Club at Al Akhawayn University in Ifrane, Morocco.
+A responsive, single-page club website following the supplied AUI Robotics Club logotype guidelines.
 
-## Run locally
+## Development
 
 ```bash
 npm install
 npm run dev
 ```
 
-Use `npm run build` to create a production build, then `npm run preview` to review it locally.
+Run `npm run build` for the production bundle and `npm run preview` to inspect it locally.
 
-## Update club content
+## Club Content
 
-- Projects live in `src/data/projects.js`.
-- Leadership and advisor details live in `src/data/team.js`.
-- Sponsor names and logo paths live in `src/data/sponsors.js`.
-- The contact form is frontend-only and shows a local confirmation after submit.
+- Projects and their statuses: `src/data/projects.js`.
+- Club leadership roles and mentor areas: `src/data/team.js`.
+- Partner names, website links, and logo paths: `src/data/sponsors.js`.
+- Contact address and navigation: `src/lib/club.js`.
 
-## Replace visual placeholders
+The team currently lists the organizational roles supplied in the repository. Add confirmed names and profiles to the data before introducing individual member profiles. Project descriptions and partner records have been retained from the existing site.
 
-Add the actual photo at the matching path inside `src/assets/images/`. The app detects files in this folder during build and renders a labelled bot fallback when a slot is empty or an image fails to load. Images use `object-fit: cover`, so close aspect ratios are best.
+## Brand Assets
 
-| Section | File path | Recommended dimensions |
-| --- | --- | --- |
-| Hero background | `src/assets/images/hero.jpg` | 1920 x 1080 |
-| About photo | `src/assets/images/about-1.jpg` | 800 x 600 |
-| About photo | `src/assets/images/about-2.jpg` | 800 x 600 |
-| Advisor photos | `src/assets/images/team/advisor-[name].jpg` | 400 x 400 |
-| Sponsor logos | `src/assets/images/sponsors/[name].png` | 600 x 240 |
-| Member 1-N | `src/assets/images/team/member-N.jpg` | 400 x 400 |
-| Project images | `src/assets/images/projects/[name].jpg` | 800 x 600 |
-| Club logo | `src/assets/images/logo.png` | 200 x 60 transparent PNG |
+The original black and white logo artwork is in `public/brand/`. Montserrat and DM Sans are hosted locally in `public/fonts/`. Brand colors and layout tokens are declared at the top of `src/index.css`.
 
-When a filename changes, update the corresponding image value in `src/data/projects.js`, `src/data/team.js`, or `src/data/sponsors.js`. The hero, about photos, and logo paths are set in their relevant section component. Replace the role-based advisor placeholders with confirmed names, roles, and profiles in `src/data/team.js`.
+Logos have 2X clear space, with X equal to one twenty-third of the horizontal artwork width. The horizontal lockup remains at least 160px wide. No AI-generated background, lab concept image, missing-photo placeholder, or decorative logo effect is used.
+
+## Contact
+
+The contact form composes a message to `auirobotics@aui.ma` in the visitor's email application. It does not submit to a server, clear the visitor's message, or claim that an email has been delivered. Direct email links are also provided.
+
+## Motion And Accessibility
+
+The app uses Framer Motion for entrance and selection transitions, Lenis for smooth navigation, and GSAP ScrollTrigger for reading progress. Reduced motion uses native navigation without scroll animation. Project and discipline selectors support arrow keys, Home, and End. Mobile navigation supports Escape and restores focus to its trigger.
+
+See `DESIGN-NOTES.md` for the comparison and redesign decisions.

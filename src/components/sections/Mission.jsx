@@ -1,17 +1,38 @@
-import { motion, useReducedMotion } from 'framer-motion';
+import { useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { ArrowUpRight, Cpu, Wrench, Code2, Users } from 'lucide-react';
+import { mailLink } from '../../lib/club';
 import SectionHeader from '../ui/SectionHeader';
+import FadeContent from '../ui/FadeContent';
+import Button from '../ui/Button';
 
-const pillars = [
-  ['01', 'Educate', 'We make technical learning practical through workshops, peer mentorship, and time with real hardware.'],
-  ['02', 'Build', 'We take ambitious ideas from prototype to test bench, blending software, electronics, and mechanical design.'],
-  ['03', 'Compete', 'We challenge our teams in competitions that reward resilience, engineering discipline, and creative problem-solving.'],
+const disciplines = [
+  { name: 'Mechanical', Icon: Wrench, title: 'Give an idea a physical form.', detail: 'CAD / Fabrication / Prototyping', copy: 'Explore mechanisms, materials, and assembly. Turn a drawing into something you can put on the workbench and test.' },
+  { name: 'Embedded', Icon: Cpu, title: 'Connect code to the real world.', detail: 'Electronics / Firmware / Sensors', copy: 'Work with circuits, sensors, and microcontrollers. Build the electronics that help a robot respond to its surroundings.' },
+  { name: 'Software & AI', Icon: Code2, title: 'Teach a machine to find its way.', detail: 'Perception / Navigation / Control', copy: 'Explore computer vision, autonomous navigation, and control. Bring software off the screen and into a system that moves.' },
+  { name: 'Operations', Icon: Users, title: 'Make the whole team move forward.', detail: 'Partnerships / Events / Documentation', copy: 'Shape partnerships, document builds, and organize experiences. Help the team share its work and bring the next project to life.' },
 ];
 
-/**
- * Explains the three pillars that guide every AUI Robotics Club activity.
- * Each pillar enters in sequence when it becomes relevant in the reader's flow.
- */
 export default function Mission() {
-  const reduceMotion = useReducedMotion();
-  return <section id="mission" className="bg-brand-bg py-24 md:py-36"><div className="mx-auto max-w-7xl px-6 md:px-12"><SectionHeader title="Three Pillars Driving Us Forward" subtitle="Our mission is to turn curiosity into capable robotics teams." centered /><div className="grid gap-4 md:grid-cols-3">{pillars.map(([number, title, body], index) => <motion.article key={title} initial={reduceMotion ? false : { opacity: 0, y: 34 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.55, delay: index * 0.15 }} whileHover={reduceMotion ? {} : { y: -4, borderColor: '#E5E5E5' }} className="group rounded-2xl border border-brand-border bg-brand-surface p-7 transition-colors duration-300 md:p-8"><span className="font-space text-sm font-bold text-brand-accent">{number}</span><h3 className="mt-14 font-space text-3xl font-bold tracking-[-0.05em]">{title}</h3><p className="mt-5 text-sm leading-relaxed text-brand-muted">{body}</p><div className="mt-12 h-px w-full bg-brand-border transition-colors group-hover:bg-brand-accent" /></motion.article>)}</div></div></section>;
+  const [active, setActive] = useState(0);
+  const reduced = useReducedMotion();
+  const selected = disciplines[active];
+  const { Icon } = selected;
+  const keyDown = (event, index) => {
+    let next;
+    if (event.key === 'ArrowRight') next = (index + 1) % disciplines.length;
+    if (event.key === 'ArrowLeft') next = (index - 1 + disciplines.length) % disciplines.length;
+    if (event.key === 'Home') next = 0;
+    if (event.key === 'End') next = disciplines.length - 1;
+    if (next === undefined) return;
+    event.preventDefault(); setActive(next); document.getElementById(`discipline-${next}`).focus();
+  };
+  return <section id="join" tabIndex={-1} className="section tone-dark join" data-pattern="reveal-and-tab-transition">
+    <div className="section-inner">
+      <SectionHeader number="05" eyebrow="For the curious" />
+      <FadeContent className="editorial-heading"><h2>Your next idea<br />needs a team.</h2><p className="lead-copy">Bring your curiosity. Find your discipline. There is room for a first circuit, a new skill, and the next ambitious build.</p></FadeContent>
+      <div className="discipline-tabs" role="tablist" aria-label="Explore club disciplines">{disciplines.map((discipline, index) => <button type="button" key={discipline.name} id={`discipline-${index}`} role="tab" aria-selected={index === active} aria-controls="discipline-panel" tabIndex={index === active ? 0 : -1} onClick={() => setActive(index)} onKeyDown={(event) => keyDown(event, index)}>{discipline.name}<ArrowUpRight size={17} aria-hidden="true" /></button>)}</div>
+      <div className="discipline-panel" id="discipline-panel" role="tabpanel" aria-labelledby={`discipline-${active}`} tabIndex={0}><AnimatePresence mode="wait"><motion.div key={selected.name} className="discipline-content" initial={reduced ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: reduced ? 0 : 0.15 }}><Icon size={66} strokeWidth={1} className="discipline-icon" aria-hidden="true" /><div><p className="small-label">{selected.detail}</p><h3>{selected.title}</h3><p>{selected.copy}</p></div><Button href={mailLink(`Join AUI Robotics - ${selected.name}`)}>Join the club <ArrowUpRight size={18} /></Button></motion.div></AnimatePresence></div>
+    </div>
+  </section>;
 }

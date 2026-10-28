@@ -1,26 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 
-/** React Bits-style viewport fade using IntersectionObserver and CSS transitions. */
-export default function FadeContent({ children, className = '' }) {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return undefined;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setVisible(true);
-        observer.unobserve(node);
-      }
-    }, { threshold: 0.12 });
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div ref={ref} className={`${className} transition-[opacity,transform,filter] duration-700 ease-out motion-reduce:transform-none motion-reduce:transition-none ${visible ? 'translate-y-0 opacity-100 blur-0' : 'translate-y-5 opacity-0 blur-[2px]'}`}>
-      {children}
-    </div>
-  );
+export default function FadeContent({ children, className = '', delay = 0 }) {
+  const reduced = useReducedMotion();
+  return <motion.div className={className}
+    initial={reduced ? false : { opacity: 0, y: 22 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.12 }}
+    transition={{ duration: reduced ? 0 : 0.65, delay: reduced ? 0 : delay, ease: [0.16, 1, 0.3, 1] }}>
+    {children}
+  </motion.div>;
 }
