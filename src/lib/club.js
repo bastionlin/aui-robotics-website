@@ -6,5 +6,5 @@ export const navigation = [
   ['projects', 'Projects'],
   ['team', 'The team'],
   ['sponsors', 'Partners'],
-  ['join', 'Join us'],
+  ['contact', 'Join us'],
 ];

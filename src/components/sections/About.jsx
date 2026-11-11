@@ -7,7 +7,6 @@ import rovAward from '../../assets/images/photos/rov-arab-award.webp';
 import vexChampion2023 from '../../assets/images/photos/vex-u-tournament-champion-2023.webp';
 import vexSkills2022 from '../../assets/images/photos/vex-u-skills-champion-2022.webp';
 import vexBooth from '../../assets/images/photos/vex-team-booth.webp';
-import taipan from '../../assets/images/photos/taipan-wro.webp';
 import arabRovBooth from '../../assets/images/photos/arab-rov-2018-booth.webp';
 
 const pillars = [
@@ -17,14 +16,13 @@ const pillars = [
 ];
 
 const moments = [
-  { src: vexChampion2023, caption: 'VEX U Tournament Champion, Morocco 2023', alt: 'A large group of AUI students holding the VEX U Tournament Champion banner from the 2023 Morocco National Championship' },
-  { src: vexSkills2022, caption: 'VEX U Robot Skills Champion, Morocco 2022', alt: 'AUI students with certificates and two robots behind the VEX U Robot Skills Champion sign from the 2022 Morocco National Championship' },
-  { src: vexBooth, caption: 'AUI Mechatronics Team booth', alt: 'The AUI team in yellow shirts standing around their robot at a competition booth decorated with the Moroccan flag and AUI banner' },
-  { src: taipan, caption: 'TAIPAN rescue robot at WRO', alt: 'Three students presenting TAIPAN, a tendon-operated continuum arm robot for underground rescue, at a WRO booth' },
-  { src: arabRovBooth, caption: 'ARAB ROV 2018, Alexandria', alt: 'AUI team members in blue shirts posing with their underwater ROV beside the ARAB ROV 2018 Regional Finals banner' },
-  { src: rovFinals, caption: "ROV'18 Regional Finals", alt: 'AUI team members in green club shirts holding certificates and the Moroccan flag on stage at the ROV 2018 Regional Finals' },
-  { src: rovAward, caption: 'ROV Arab competition', alt: 'AUI students giving a thumbs up while holding a trophy and the Moroccan flag at the ROV Arab competition' },
-  { src: vexTournament, caption: 'VEX Robotics tournament', alt: 'The AUI Mechatronics team in green hoodies posing with their robots, certificates, the AUI banner, and the Moroccan flag' },
+  { src: vexChampion2023, width: 547, height: 306, caption: 'VEX U Tournament Champion, Morocco 2023', alt: 'A large group of AUI students holding the VEX U Tournament Champion banner from the 2023 Morocco National Championship' },
+  { src: vexSkills2022, width: 550, height: 357, caption: 'VEX U Robot Skills Champion, Morocco 2022', alt: 'AUI students with certificates and two robots behind the VEX U Robot Skills Champion sign from the 2022 Morocco National Championship' },
+  { src: vexBooth, width: 1000, height: 567, caption: 'AUI Mechatronics Team booth', alt: 'The AUI team in yellow shirts standing around their robot at a competition booth decorated with the Moroccan flag and AUI banner' },
+  { src: arabRovBooth, width: 486, height: 488, caption: 'ARAB ROV 2018, Alexandria', alt: 'AUI team members in blue shirts posing with their underwater ROV beside the ARAB ROV 2018 Regional Finals banner' },
+  { src: rovFinals, width: 1000, height: 667, caption: "ROV'18 Regional Finals", alt: 'AUI team members in green club shirts holding certificates and the Moroccan flag on stage at the ROV 2018 Regional Finals' },
+  { src: rovAward, width: 1000, height: 688, caption: 'ROV Arab competition', alt: 'AUI students giving a thumbs up while holding a trophy and the Moroccan flag at the ROV Arab competition' },
+  { src: vexTournament, width: 1000, height: 750, caption: 'VEX Robotics tournament', alt: 'The AUI Mechatronics team in green hoodies posing with their robots, certificates, the AUI banner, and the Moroccan flag' },
 ];
 
 export default function About() {
@@ -38,7 +36,7 @@ export default function About() {
       <div className="principles">{pillars.map(([title, copy], index) => <FadeContent key={title} delay={index * 0.07}><article><span className="ordinal">0{index + 1}</span><h3>{title}</h3><p>{copy}</p></article></FadeContent>)}</div>
       <div className="competition-strip">
         <div className="competition-copy"><p className="small-label">On the competition floor</p><p>From national VEX U titles to the ARAB ROV finals, our teams have carried AUI and Morocco onto the competition floor.</p></div>
-        <ul className="competition-photos">{moments.map((moment) => <li key={moment.caption}><figure><img src={moment.src} alt={moment.alt} loading="lazy" /><figcaption>{moment.caption}</figcaption></figure></li>)}</ul>
+        <ul className="competition-photos">{moments.map((moment) => <li key={moment.caption} style={{ '--ratio': moment.width / moment.height }}><figure><img src={moment.src} alt={moment.alt} width={moment.width} height={moment.height} loading="lazy" /><figcaption>{moment.caption}</figcaption></figure></li>)}</ul>
       </div>
     </div>
   </section>;

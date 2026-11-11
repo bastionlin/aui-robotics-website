@@ -16,7 +16,7 @@ export default function Hero() {
       </FadeContent>
       <FadeContent delay={0.2} className="hero-actions">
         <Button href="#projects">Explore our work <ArrowUpRight size={18} /></Button>
-        <a className="text-link" href="#join">Find your place <ArrowUpRight size={18} /></a>
+        <a className="text-link" href="#contact">Find your place <ArrowUpRight size={18} /></a>
       </FadeContent>
     </div>
     <div className="hero-footer"><span>Hardware. Software. Together.</span><a href="#about" aria-label="Explore the club"><ArrowDown size={20} /></a><span>Student-led. AUI-built.</span></div>

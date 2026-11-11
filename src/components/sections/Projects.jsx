@@ -6,6 +6,9 @@ import { mailLink } from '../../lib/club';
 import SectionHeader from '../ui/SectionHeader';
 import FadeContent from '../ui/FadeContent';
 
+const photos = import.meta.glob('../../assets/images/photos/*', { eager: true, query: '?url', import: 'default' });
+const photoUrl = (name) => Object.entries(photos).find(([path]) => path.endsWith(`/${name}`))?.[1];
+
 const statusOrder = ['Active', 'Upcoming', 'Completed'];
 const filters = ['All', ...statusOrder.filter((status) => projects.some((project) => project.status === status))];
 
@@ -50,6 +53,7 @@ export default function Projects() {
           <AnimatePresence mode="wait"><motion.article key={selected.title} initial={reduced ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: reduced ? 0 : 0.15 }}>
             <div className="project-detail-top"><span className="small-label">{[selected.category, selected.year].filter(Boolean).join(' / ')}</span><span className="project-status"><Circle size={6} fill="currentColor" aria-hidden="true" />{selected.status}</span></div>
             <h3>{selected.title}</h3><p>{selected.description}</p>
+            {selected.image && photoUrl(selected.image) && <figure className="project-photo"><img src={photoUrl(selected.image)} alt={`${selected.title}: the AUI team at the event`} width={selected.imageWidth} height={selected.imageHeight} /></figure>}
             {(selected.result || selected.location) && <dl className="project-facts">{selected.result && <div><dt className="small-label">Result</dt><dd>{selected.result}</dd></div>}{selected.location && <div><dt className="small-label">Location</dt><dd>{selected.location}</dd></div>}</dl>}
             {selected.tags?.length > 0 && <div className="project-stack"><span className="small-label">Built with</span><ul>{selected.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul></div>}
             <a className="text-link" href={mailLink(`AUI Robotics - ${selected.title}`)}>Get involved <ArrowUpRight size={18} /></a>

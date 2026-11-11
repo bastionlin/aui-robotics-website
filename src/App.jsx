@@ -1,4 +1,4 @@
-import { Navbar, Hero, About, Mission, Projects, Team, Sponsors, Contact, Footer } from './components/sections';
+import { Navbar, Hero, About, Projects, Team, Sponsors, Contact, Footer } from './components/sections';
 import useMotionSystem from './hooks/useMotionSystem';
 
 export default function App() {
@@ -12,7 +12,6 @@ export default function App() {
       <Projects />
       <Team />
       <Sponsors />
-      <Mission />
       <Contact />
     </main>
     <Footer />
