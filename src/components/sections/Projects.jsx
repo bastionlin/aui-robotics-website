@@ -4,9 +4,16 @@ import { ArrowRight, Circle } from 'lucide-react';
 import { projects } from '../../data/projects';
 import SectionHeader from '../ui/SectionHeader';
 import FadeContent from '../ui/FadeContent';
+import ShadedBackdrop from '../ui/ShadedBackdrop';
 
 const photos = import.meta.glob('../../assets/images/photos/*', { eager: true, query: '?url', import: 'default' });
 const photoUrl = (name) => Object.entries(photos).find(([path]) => path.endsWith(`/${name}`))?.[1];
+
+const headerPhotos = [
+  { file: 'rov-2018-regional-finals.webp', position: '50% 60%' },
+  { file: 'vex-u-tournament-champion-2023.webp', position: '50% 40%' },
+  { file: 'arab-rov-2018-booth.webp', position: '50% 35%' },
+];
 
 const statusOrder = ['Active', 'Upcoming', 'Completed'];
 const filters = ['All', ...statusOrder.filter((status) => projects.some((project) => project.status === status))];
@@ -39,6 +46,7 @@ export default function Projects() {
   };
 
   return <section id="projects" tabIndex={-1} className="section tone-dark projects" data-pattern="sticky-index">
+    <ShadedBackdrop images={headerPhotos} className="projects-backdrop" />
     <div className="section-inner">
       <SectionHeader number="02" eyebrow="Project index" />
       <FadeContent className="projects-heading"><h2>From first prototype<br />to next possibility.</h2><p className="lead-copy">Underwater vehicles. Planetary rovers. Competition robots. Explore the work that has taken us from campus to national titles and international stages.</p></FadeContent>

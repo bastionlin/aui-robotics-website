@@ -2,11 +2,17 @@ import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import Logo from '../ui/Logo';
 import Button from '../ui/Button';
 import FadeContent from '../ui/FadeContent';
-import teamAtWork from '../../assets/images/photos/team-at-work.webp';
+import ShadedBackdrop from '../ui/ShadedBackdrop';
+
+const heroPhotos = [
+  { file: 'team-at-work.webp', position: '50% 55%' },
+  { file: 'vex-team-booth.webp', position: '50% 45%' },
+  { file: 'vex-tournament.webp', position: '50% 55%' },
+];
 
 export default function Hero() {
   return <section id="top" tabIndex={-1} className="hero tone-dark" data-pattern="staggered-reveal">
-    <div className="hero-media" aria-hidden="true"><img src={teamAtWork} alt="" width="1024" height="682" fetchpriority="high" /></div>
+    <ShadedBackdrop images={heroPhotos} className="hero-media" priority />
     <div className="hero-content">
       <FadeContent><p className="eyebrow">Al Akhawayn University / Ifrane, Morocco</p></FadeContent>
       <h1 className="hero-identity"><Logo inverse className="brand-lockup--hero" /></h1>

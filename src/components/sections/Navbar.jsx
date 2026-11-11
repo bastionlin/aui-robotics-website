@@ -12,9 +12,9 @@ export default function Navbar() {
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       const visible = entries.find((entry) => entry.isIntersecting);
-      if (visible) setActive(visible.target.id);
+      if (visible) setActive(visible.target.id === 'top' ? '' : visible.target.id);
     }, { rootMargin: '-20% 0px -65% 0px' });
-    navigation.forEach(([id]) => {
+    ['top', ...navigation.map(([id]) => id)].forEach((id) => {
       const section = document.getElementById(id);
       if (section) observer.observe(section);
     });
