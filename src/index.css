@@ -89,6 +89,8 @@ main:focus, section:focus { outline: none; }
 .hero-footer a { display: grid; place-items: center; width: 44px; height: 44px; }
 
 .about .editorial-heading h2 { font-size: 62px; }
+.about-photo { margin: 72px 0 0; overflow: hidden; background: var(--light-grey); }
+.about-photo img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: 50% 100%; }
 .principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px; margin-top: 72px; }
 .principles article { border-top: 1px solid var(--grey); padding-top: 23px; }
 .principles h3 { margin-top: 30px; margin-bottom: 15px; }
@@ -258,6 +260,8 @@ svg.sponsor-logo { max-height: none; }
   .hero-footer { min-height: 60px; font-size: 10px; }
   .hero-footer > span:last-child { display: none; }
   .editorial-heading { gap: 26px; }
+  .about-photo { margin-top: 46px; }
+  .about-photo img { aspect-ratio: 4 / 3; object-position: 40% 60%; }
   .principles { grid-template-columns: 1fr; gap: 34px; margin-top: 46px; }
   .principles h3 { font-size: 23px; margin-top: 22px; }
   .principles p { max-width: 100%; }
