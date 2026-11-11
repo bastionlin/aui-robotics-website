@@ -9,6 +9,7 @@ export const sponsors = [
   { name: 'Menasteel', logo: 'menasteel.jpg' },
   { name: 'Lumières et technologies', logo: 'lumieres-et-technologie.png', href: 'https://www.lt.ma/' },
   { name: 'CITI Association', logo: 'citi-association.png', href: 'https://citiassociation.ma/' },
+  { name: 'ActiveLabs', logo: 'activelabs.png', optical: 1.15 },
   { name: 'Neoncity', logo: 'neoncity.png', optical: 0.92, href: 'https://www.neoncity.ma/collections/night-lamps-2025-collection' },
 ];
 
@@ -38,5 +39,6 @@ export const logoBounds = {
   'menasteel.jpg': [6, 73, 187, 54, 200, 200],
   'lumieres-et-technologie.png': [0, 3, 160, 41, 160, 47],
   'citi-association.png': [10, 0, 179, 38, 199, 40],
+  'activelabs.png': [12, 8, 321, 322, 346, 339],
   'neoncity.png': [111, 52, 822, 413, 1047, 519],
 };

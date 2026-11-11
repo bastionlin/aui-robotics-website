@@ -139,6 +139,7 @@ main:focus, section:focus { outline: none; }
 .team-roster article { display: flex; align-items: baseline; gap: 26px; padding-block: 25px; border-top: 1px solid var(--light-grey); }
 .team-roster > div:last-child article { border-bottom: 1px solid var(--light-grey); }
 .team-roster h3 { font-size: 23px; margin-bottom: 9px; }
+.team-roster .team-role { margin-bottom: 8px; font-size: 11px; color: var(--charcoal); }
 .team-roster p { color: var(--charcoal); font-size: 15px; line-height: 1.6; }
 .competition-strip { display: grid; grid-template-columns: 1fr 2.6fr; gap: 44px; margin-top: 72px; padding-top: 28px; border-top: 1px solid var(--grey); }
 .competition-copy p:last-child { max-width: 300px; margin-top: 18px; font-size: 16px; line-height: 1.65; color: var(--muted); }
@@ -153,8 +154,9 @@ main:focus, section:focus { outline: none; }
 
 .sponsors .editorial-heading { gap: 10%; }
 .sponsors .editorial-heading h2 { font-size: 49px; }
-.sponsor-wall { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 56px; border-top: 1px solid var(--white); border-left: 1px solid var(--light-grey); background: var(--white); }
+.sponsor-wall { display: grid; grid-template-columns: repeat(6, 1fr); margin-top: 56px; border-top: 1px solid var(--white); border-left: 1px solid var(--light-grey); background: var(--white); }
 .sponsor-mark { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; min-height: 135px; padding: 26px; border-right: 1px solid var(--light-grey); border-bottom: 1px solid var(--light-grey); color: var(--black); }
+.sponsor-mark:last-child:nth-child(6n+5) { grid-column: span 2; }
 a.sponsor-mark:hover { outline: 1px solid var(--black); outline-offset: -1px; }
 .sponsor-logo-frame { display: flex; align-items: center; justify-content: center; width: 100%; }
 .sponsor-logo { display: block; width: calc(var(--logo-w, 140px) * var(--logo-scale, 1)); max-width: 100%; height: auto; max-height: 64px; object-fit: contain; overflow: hidden; }
@@ -239,7 +241,9 @@ svg.sponsor-logo { max-height: none; }
   .team-intro h2 { font-size: 36px; }
   .team-roster article { gap: 18px; }
   .team-roster h3 { font-size: 20px; }
-  .sponsor-wall { grid-template-columns: repeat(5, 1fr); }
+  .sponsor-wall { grid-template-columns: repeat(4, 1fr); }
+  .sponsor-mark:last-child:nth-child(6n+5) { grid-column: auto; }
+  .sponsor-mark:last-child:nth-child(4n+3) { grid-column: span 2; }
   .sponsor-mark { padding: 16px; min-height: 120px; }
   .sponsor-wall { --logo-scale: 0.82; }
   .sponsor-name { font-size: 16px; }
@@ -302,6 +306,8 @@ svg.sponsor-logo { max-height: none; }
   .mentor-strip > div { grid-template-columns: 1fr; gap: 28px; margin-top: 26px; }
   .mentor-strip h3 { font-size: 20px; }
   .sponsor-wall { grid-template-columns: repeat(2, 1fr); margin-top: 42px; }
+  .sponsor-mark:last-child:nth-child(4n+3) { grid-column: auto; }
+  .sponsor-mark:last-child:nth-child(odd) { grid-column: span 2; }
   .sponsor-mark { min-height: 115px; padding: 21px; }
   .sponsor-wall { --logo-scale: 0.85; }
   .partner-benefits { grid-template-columns: 1fr; gap: 34px; margin-top: 44px; }
