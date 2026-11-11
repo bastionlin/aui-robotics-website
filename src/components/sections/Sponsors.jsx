@@ -1,5 +1,5 @@
 import { ArrowUpRight } from 'lucide-react';
-import { sponsors, logoBounds } from '../../data/sponsors';
+import { sponsors, logoBounds, logoSize } from '../../data/sponsors';
 import { mailLink } from '../../lib/club';
 import SectionHeader from '../ui/SectionHeader';
 import FadeContent from '../ui/FadeContent';
@@ -21,11 +21,12 @@ export default function Sponsors() {
       <div className="sponsor-wall" aria-label="Club sponsors and partners">{sponsors.map((sponsor) => {
         const src = sponsor.logo ? findMark(sponsor.logo) : null;
         const bounds = logoBounds[sponsor.logo];
+        const size = bounds ? logoSize(bounds, sponsor.optical) : null;
         const content = <><span className="sponsor-logo-frame">{src && bounds ? (
-          <svg viewBox={bounds.slice(0, 4).join(' ')} role="img" aria-label={`${sponsor.name} logo`} className={`sponsor-logo ${sponsor.monochrome ? 'partner-logo--monochrome' : ''}`}>
+          <svg viewBox={bounds.slice(0, 4).join(' ')} style={{ '--logo-w': `${size.width}px`, aspectRatio: size.ratio }} role="img" aria-label={`${sponsor.name} logo`} className={`sponsor-logo ${sponsor.monochrome ? 'partner-logo--monochrome' : ''}`}>
             <image href={src} width={bounds[4]} height={bounds[5]} />
           </svg>
-        ) : src ? <img src={src} alt={sponsor.name} loading="lazy" className="sponsor-logo" /> : <span className="sponsor-name">{sponsor.name}</span>}</span><span className="sponsor-descriptor">{sponsor.descriptor || '\u00a0'}</span></>;
+        ) : src ? <img src={src} alt={sponsor.name} loading="lazy" className="sponsor-logo" /> : <span className="sponsor-name">{sponsor.name}</span>}</span>{sponsor.descriptor && <span className="sponsor-descriptor">{sponsor.descriptor}</span>}</>;
         return sponsor.href ? <a key={sponsor.name} className="sponsor-mark" href={sponsor.href} target="_blank" rel="noreferrer" aria-label={`${sponsor.name} website (opens in a new tab)`}>{content}</a> : <div key={sponsor.name} className="sponsor-mark">{content}</div>;
       })}</div>
       <div className="partner-benefits">{benefits.map(([title, copy], index) => <FadeContent key={title} delay={index * 0.07}><article><div><span className="ordinal">0{index + 1}</span><ArrowUpRight size={20} aria-hidden="true" /></div><h3>{title}</h3><p>{copy}</p></article></FadeContent>)}</div>

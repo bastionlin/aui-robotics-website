@@ -143,8 +143,9 @@ main:focus, section:focus { outline: none; }
 .sponsor-wall { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 56px; border-top: 1px solid var(--white); border-left: 1px solid var(--light-grey); background: var(--white); }
 .sponsor-mark { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; min-height: 135px; padding: 26px; border-right: 1px solid var(--light-grey); border-bottom: 1px solid var(--light-grey); color: var(--black); }
 a.sponsor-mark:hover { outline: 1px solid var(--black); outline-offset: -1px; }
-.sponsor-logo-frame { display: flex; align-items: center; justify-content: center; width: 100%; max-width: 160px; height: 64px; }
-.sponsor-logo { display: block; width: 100%; height: 100%; object-fit: contain; overflow: hidden; }
+.sponsor-logo-frame { display: flex; align-items: center; justify-content: center; width: 100%; }
+.sponsor-logo { display: block; width: calc(var(--logo-w, 140px) * var(--logo-scale, 1)); max-width: 100%; height: auto; max-height: 64px; object-fit: contain; overflow: hidden; }
+svg.sponsor-logo { max-height: none; }
 .partner-logo--monochrome { filter: brightness(0); }
 .sponsor-name { font-family: var(--font-display); font-size: 19px; font-weight: 500; text-align: center; }
 .sponsor-descriptor { font-size: 10px; font-weight: 500; }
@@ -226,7 +227,7 @@ a.sponsor-mark:hover { outline: 1px solid var(--black); outline-offset: -1px; }
   .team-roster h3 { font-size: 20px; }
   .sponsor-wall { grid-template-columns: repeat(5, 1fr); }
   .sponsor-mark { padding: 16px; min-height: 120px; }
-  .sponsor-logo-frame { height: 55px; }
+  .sponsor-wall { --logo-scale: 0.82; }
   .sponsor-name { font-size: 16px; }
   .contact-layout { grid-template-columns: 1fr; gap: 44px; }
   .contact-form { max-width: 700px; }
@@ -284,7 +285,7 @@ a.sponsor-mark:hover { outline: 1px solid var(--black); outline-offset: -1px; }
   .mentor-strip h3 { font-size: 20px; }
   .sponsor-wall { grid-template-columns: repeat(2, 1fr); margin-top: 42px; }
   .sponsor-mark { min-height: 115px; padding: 21px; }
-  .sponsor-logo-frame { height: 60px; }
+  .sponsor-wall { --logo-scale: 0.85; }
   .partner-benefits { grid-template-columns: 1fr; gap: 34px; margin-top: 44px; }
   .partner-benefits h3 { font-size: 23px; margin-top: 24px; }
   .discipline-tabs { grid-template-columns: repeat(2, 1fr); margin-top: 40px; }
