@@ -114,13 +114,16 @@ main:focus, section:focus { outline: none; }
 .project-index button:hover { background: var(--charcoal); }
 .project-index button > span:nth-child(2) { flex: 1; min-width: 0; }
 .project-index small { display: block; margin-top: 5px; font-size: 12px; color: var(--light-grey); }
-.project-number { font-size: 12px; color: var(--grey); }
+.project-number { min-width: 30px; font-size: 12px; font-variant-numeric: tabular-nums; color: var(--grey); }
 .project-index svg { flex-shrink: 0; }
 .project-detail { position: relative; min-height: 480px; padding: 25px 0 50px 36px; border-left: 1px solid var(--grey); }
 .project-detail-top { display: flex; justify-content: space-between; gap: 20px; align-items: center; }
 .project-status { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; }
 .project-detail h3 { margin-top: 30px; margin-bottom: 22px; font-size: 39px; line-height: 1.2; }
 .project-detail article > p { max-width: 500px; font-size: 18px; line-height: 1.7; color: var(--light-grey); }
+.project-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 32px; max-width: 560px; margin: 35px 0 0; padding-top: 22px; border-top: 1px solid var(--charcoal); }
+.project-facts dt { color: var(--light-grey); }
+.project-facts dd { margin: 10px 0 0; font-size: 15px; line-height: 1.55; }
 .project-stack { margin-top: 35px; padding-top: 22px; border-top: 1px solid var(--charcoal); }
 .project-stack > span { color: var(--light-grey); }
 .project-stack ul { display: flex; flex-wrap: wrap; gap: 12px 28px; list-style: none; padding: 13px 0 0; font-size: 15px; }
@@ -286,6 +289,7 @@ svg.sponsor-logo { max-height: none; }
   .project-detail h3 { font-size: 31px; margin-top: 25px; }
   .project-detail article > p { font-size: 17px; }
   .project-stack { margin-top: 28px; }
+  .project-facts { grid-template-columns: 1fr; margin-top: 28px; }
   .project-position { left: 0; }
   .team-layout { grid-template-columns: 1fr; gap: 40px; }
   .team-intro { position: static; }

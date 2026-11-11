@@ -6,7 +6,7 @@ import teamAtWork from '../../assets/images/photos/team-at-work.webp';
 
 export default function Hero() {
   return <section id="top" tabIndex={-1} className="hero tone-dark" data-pattern="staggered-reveal">
-    <div className="hero-media" aria-hidden="true"><img src={teamAtWork} alt="" width="1024" height="682" fetchPriority="high" /></div>
+    <div className="hero-media" aria-hidden="true"><img src={teamAtWork} alt="" width="1024" height="682" fetchpriority="high" /></div>
     <div className="hero-content">
       <FadeContent><p className="eyebrow">Al Akhawayn University / Ifrane, Morocco</p></FadeContent>
       <h1 className="hero-identity"><Logo inverse className="brand-lockup--hero" /></h1>
