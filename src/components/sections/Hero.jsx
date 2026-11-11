@@ -9,7 +9,7 @@ export default function Hero() {
       <FadeContent><p className="eyebrow">Al Akhawayn University / Ifrane, Morocco</p></FadeContent>
       <h1 className="hero-identity"><Logo inverse className="brand-lockup--hero" /></h1>
       <FadeContent delay={0.12} className="hero-intro">
-        <p className="hero-tagline">Build. Code. Compete.</p>
+        <p className="hero-tagline">Build. Break. Repeat.</p>
         <p>Student curiosity. Real engineering.<br />A team building what comes next.</p>
       </FadeContent>
       <FadeContent delay={0.2} className="hero-actions">
