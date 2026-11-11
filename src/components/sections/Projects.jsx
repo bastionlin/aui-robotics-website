@@ -40,7 +40,7 @@ export default function Projects() {
     <div className="section-inner">
       <SectionHeader number="02" eyebrow="Project index" />
       <FadeContent className="projects-heading"><h2>From first prototype<br />to next possibility.</h2><p className="lead-copy">Underwater vehicles. Planetary rovers. Competition robots. Explore the work that has taken us from campus to national titles and international stages.</p></FadeContent>
-      <div className="project-toolbar"><span className="small-label">{String(projects.length).padStart(2, '0')} milestones / One shared ambition</span><div className="project-filters" role="group" aria-label="Filter projects by status">{filters.map((item) => <button key={item} type="button" aria-pressed={filter === item} onClick={() => setFilter(item)}>{item}<span>{item === 'All' ? projects.length : projects.filter((p) => p.status === item).length}</span></button>)}</div></div>
+      <div className="project-toolbar"><span className="small-label">{String(projects.length).padStart(2, '0')} milestones / One shared ambition</span>{filters.length > 2 && <div className="project-filters" role="group" aria-label="Filter projects by status">{filters.map((item) => <button key={item} type="button" aria-pressed={filter === item} onClick={() => setFilter(item)}>{item}<span>{item === 'All' ? projects.length : projects.filter((p) => p.status === item).length}</span></button>)}</div>}</div>
       {selected ? <div className="project-explorer">
         <div className="project-index" role="tablist" aria-label="Robotics projects" aria-orientation={horizontal ? 'horizontal' : 'vertical'}>{visible.map((project, index) => {
           const id = projects.indexOf(project);
