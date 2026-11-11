@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { ArrowUpRight, ArrowRight, Circle } from 'lucide-react';
+import { ArrowRight, Circle } from 'lucide-react';
 import { projects } from '../../data/projects';
-import { mailLink } from '../../lib/club';
 import SectionHeader from '../ui/SectionHeader';
 import FadeContent from '../ui/FadeContent';
 
@@ -56,7 +55,6 @@ export default function Projects() {
             {selected.image && photoUrl(selected.image) && <figure className="project-photo"><img src={photoUrl(selected.image)} alt={`${selected.title}: the AUI team at the event`} width={selected.imageWidth} height={selected.imageHeight} /></figure>}
             {(selected.result || selected.location) && <dl className="project-facts">{selected.result && <div><dt className="small-label">Result</dt><dd>{selected.result}</dd></div>}{selected.location && <div><dt className="small-label">Location</dt><dd>{selected.location}</dd></div>}</dl>}
             {selected.tags?.length > 0 && <div className="project-stack"><span className="small-label">Built with</span><ul>{selected.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul></div>}
-            <a className="text-link" href={mailLink(`AUI Robotics - ${selected.title}`)}>Get involved <ArrowUpRight size={18} /></a>
           </motion.article></AnimatePresence>
           <p className="project-position">{String(activeIndex + 1).padStart(2, '0')} / {String(visible.length).padStart(2, '0')}</p>
         </div>
