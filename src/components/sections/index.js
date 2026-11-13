@@ -6,3 +6,5 @@ export { default as Team } from './Team';
 export { default as Sponsors } from './Sponsors';
 export { default as Contact } from './Contact';
 export { default as Footer } from './Footer';
+export { default as Blog } from './Blog';
+export { default as PostPage } from './PostPage';

@@ -1,6 +1,6 @@
 # AUI Robotics Club Website
 
-A responsive, single-page club website following the supplied AUI Robotics Club logotype guidelines.
+A responsive, static club website following the AUI Robotics Club logotype guidelines. Content is managed in Markdown through GitHub, without a backend or database.
 
 ## Development
 
@@ -11,14 +11,20 @@ npm run dev
 
 Run `npm run build` for the production bundle and `npm run preview` to inspect it locally.
 
-## Club Content
+## Edit Content Without Writing Code
 
-- Projects and their statuses: `src/data/projects.js`.
-- Club leadership roles and mentor areas: `src/data/team.js`.
-- Partner names, website links, and logo paths: `src/data/sponsors.js`.
-- Contact address and navigation: `src/lib/club.js`.
+- Projects and their statuses: `content/projects/*.md`.
+- Members, roles and advisors: `content/members/*.md`.
+- Partners: `content/sponsors/*.md`.
+- Journal posts: `content/posts/*.md`.
+- Section copy: `content/sections/*.md`.
+- Hero, contact address, navigation and footer identity: `content/site.md`.
 
-The team currently lists the organizational roles supplied in the repository. Add confirmed names and profiles to the data before introducing individual member profiles. Project descriptions and partner records have been retained from the existing site.
+Start with [the content guide](docs/CONTENT-GUIDE.md) and a template in `content/_templates/`. AI contributors must read [AGENTS.md](AGENTS.md). Markdown supports images, links, tables and click-to-load YouTube/OneDrive/Stream videos. The build validates frontmatter, dates, status values, media paths and video hosts. Drafts are omitted from the frontend bundle, not hidden from a public Git repository.
+
+Run `npm run content:check`, `npm test`, and `npm run build` before merging. The included GitHub workflow runs all three. Your existing Git-connected static host must rebuild and publish `dist/` after a merge; the workflow itself is validation, not a deployment service. Journal URLs use `#blog/<slug>` and work without server rewrites.
+
+The latest competition record, seven executive board members, three faculty advisors, eleven partner records, approved logo sizing, real event photos, and the Build. Break. Repeat. tagline are preserved in Markdown. The removed curious section and project Get involved link remain removed. See the content guide before editing historical results or named profiles.
 
 ## Brand Assets
 
@@ -32,6 +38,6 @@ The contact form composes a message to `auirobotics@aui.ma` in the visitor's ema
 
 ## Motion And Accessibility
 
-The app uses Framer Motion for entrance and selection transitions, Lenis for smooth navigation, and GSAP ScrollTrigger for reading progress. Reduced motion uses native navigation without scroll animation. Project and discipline selectors support arrow keys, Home, and End. Mobile navigation supports Escape and restores focus to its trigger.
+The app uses Framer Motion for entrance and selection transitions, Lenis for smooth navigation, and GSAP ScrollTrigger for reading progress. Reduced motion uses native navigation without scroll animation. The project selector supports arrow keys, Home, and End. Mobile navigation supports Escape and restores focus to its trigger.
 
 See `DESIGN-NOTES.md` for the comparison and redesign decisions.

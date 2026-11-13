@@ -6,7 +6,7 @@ const statusStyles = { Active: 'bg-brand-surface text-brand-text', Completed: 'b
 
 /**
  * Displays one current or planned robotics project with its stack and status.
- * Accepts the project object exported from src/data/projects.js.
+ * Accepts the project metadata loaded from content/projects/*.md.
  */
 export default function ProjectCard({ project }) {
   const reduceMotion = useReducedMotion();
@@ -18,7 +18,7 @@ export default function ProjectCard({ project }) {
       <div className="p-6">
         <div className="flex items-start justify-between gap-4"><p className="text-xs font-semibold tracking-[0.1em] text-brand-muted">{project.category}</p><span className={`shrink-0 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${statusStyles[project.status]}`}>{project.status}</span></div>
         <h3 className="mt-3 font-space text-2xl font-bold tracking-[-0.04em]">{project.title}</h3>
-        <p className="mt-3 min-h-20 text-sm leading-relaxed text-brand-muted">{project.description}</p>
+        <p className="mt-3 min-h-20 text-sm leading-relaxed text-brand-muted">{project.summary}</p>
         <div className="mt-6 flex items-center justify-between gap-3 border-t border-brand-border pt-4"><div className="flex flex-wrap gap-2">{project.tags.map((tag) => <span key={tag} className="text-[11px] text-brand-muted">{tag}</span>)}</div><ArrowUpRight size={18} aria-hidden="true" className="shrink-0 text-brand-accent" /></div>
       </div>
     </motion.article>

@@ -3,7 +3,7 @@ import ImageWithFallback from './ImageWithFallback';
 
 /**
  * Renders an AUI Robotics leadership profile with image and social fallback states.
- * Accepts a member object from src/data/team.js.
+ * Accepts a member object loaded from content/members/*.md.
  */
 export default function MemberCard({ member }) {
   const initials = member.name.split(' ').map((word) => word[0]).join('').slice(0, 2);

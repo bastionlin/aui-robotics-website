@@ -6,7 +6,7 @@ import Lenis from 'lenis';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function useMotionSystem() {
+export default function useMotionSystem(route = 'home') {
   const reduced = useReducedMotion();
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
@@ -37,5 +37,5 @@ export default function useMotionSystem() {
       gsap.ticker.remove(tick);
       lenis.destroy();
     };
-  }, [reduced]);
+  }, [reduced, route]);
 }

@@ -1,10 +1,5 @@
-export const clubEmail = 'auirobotics@aui.ma';
+import { site } from '../content';
+export const clubEmail = site.email;
 export const mailLink = (subject) => `mailto:${clubEmail}?subject=${encodeURIComponent(subject)}`;
 export const assetUrl = (path) => `${import.meta.env.BASE_URL}${path}`;
-export const navigation = [
-  ['about', 'The club'],
-  ['projects', 'Projects'],
-  ['team', 'The team'],
-  ['sponsors', 'Partners'],
-  ['contact', 'Join us'],
-];
+export const navigation = site.navigation.map(({ id, label }) => [id, label]);

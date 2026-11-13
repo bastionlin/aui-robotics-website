@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
 import Logo from '../ui/Logo';
 import { navigation } from '../../lib/club';
+import { site } from '../../content';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -44,7 +45,7 @@ export default function Navbar() {
     <nav id="primary-navigation" aria-label="Main navigation" className={`primary-nav ${open ? 'is-open' : ''}`}>
       {navigation.map(([id, label]) => <a key={id} href={`#${id}`} aria-current={active === id ? 'location' : undefined} onClick={() => setOpen(false)}>{label}</a>)}
     </nav>
-    <a className="header-contact" href="#contact">Let's talk <ArrowUpRight size={18} aria-hidden="true" /></a>
+    <a className="header-contact" href="#contact">{site.contactLabel} <ArrowUpRight size={18} aria-hidden="true" /></a>
     <button ref={toggleRef} className="menu-toggle" type="button" aria-label={open ? 'Close navigation' : 'Open navigation'} aria-controls="primary-navigation" aria-expanded={open} onClick={() => setOpen(!open)}>
       {open ? <X size={23} /> : <Menu size={23} />}
     </button>

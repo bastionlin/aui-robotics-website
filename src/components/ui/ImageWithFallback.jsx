@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Bot } from 'lucide-react';
+import { assetUrl } from '../../lib/club';
 
 const assetModules = import.meta.glob('../../assets/images/**/*', { eager: true, query: '?url', import: 'default' });
 const resolveAsset = (path) => Object.entries(assetModules).find(([key]) => key.endsWith(`/${path}`))?.[1];
@@ -10,7 +11,7 @@ const resolveAsset = (path) => Object.entries(assetModules).find(([key]) => key.
  */
 export default function ImageWithFallback({ path, alt, className = '', loading = 'lazy', fallback }) {
   const [failed, setFailed] = useState(false);
-  const src = path ? resolveAsset(path) : undefined;
+  const src = path?.startsWith('/uploads/') ? assetUrl(path.slice(1)) : path ? resolveAsset(path) : undefined;
   if (!src || failed) return <div role="img" aria-label={`${alt} placeholder`} className={`flex items-center justify-center bg-brand-surface text-brand-muted ${className}`}>{fallback || <><Bot aria-hidden="true" size={34} strokeWidth={1.25} /><span className="sr-only">{alt}</span></>}</div>;
   return <img src={src} alt={alt} loading={loading} className={className} onError={() => setFailed(true)} />;
 }

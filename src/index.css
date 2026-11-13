@@ -9,6 +9,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Content typography is shared by sections, project logs, profiles and posts. */
+
 :root {
   --black: #000000;
   --charcoal: #222222;
@@ -338,4 +340,79 @@ svg.sponsor-logo { max-height: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+.hero { height: auto; }
+.hero-content { min-height: 580px; padding-bottom: 130px; }
+.hero-intro .markdown-content { max-width: 580px; margin-inline: auto; color: var(--light-grey); font-size: 16px; }
+.markdown-content { line-height: 1.7; overflow-wrap: anywhere; min-width: 0; }
+.markdown-content > * + * { margin-top: 1em; }
+.markdown-content h2 { font-size: 29px; line-height: 1.3; margin-top: 1.7em; }
+.markdown-content h3 { font-size: 23px; line-height: 1.4; margin-top: 1.5em; }
+.markdown-content ul, .markdown-content ol { padding-left: 1.4em; list-style: revert; }
+.markdown-content li + li { margin-top: 0.4em; }
+.markdown-content a { text-decoration: underline; text-underline-offset: 4px; }
+.markdown-content blockquote { margin-inline: 0; padding: 8px 0 8px 24px; border-left: 2px solid var(--rule); color: var(--muted); }
+.markdown-content pre { overflow-x: auto; padding: 20px; border: 1px solid var(--rule); font-size: 14px; }
+.markdown-content code { font-size: 0.9em; }
+.markdown-content img { width: 100%; height: auto; margin-block: 28px; }
+.markdown-table { overflow-x: auto; }
+.markdown-content table { width: 100%; border-collapse: collapse; text-align: left; }
+.markdown-content th, .markdown-content td { padding: 12px 16px; border: 1px solid var(--rule); min-width: 120px; }
+.project-detail > article > .markdown-content, .project-detail article > .markdown-content { font-size: 18px; color: var(--light-grey); }
+.project-detail article > p.project-updated { font-size: 12px; color: var(--grey); margin-block: -8px 24px; }
+.project-repository { margin-left: 24px; }
+.project-media { width: 100%; height: auto; margin-block: 24px; }
+.project-filters { flex-wrap: wrap; }
+.project-toolbar > * { min-width: 0; }
+.team-roster article { align-items: start; }
+.team-roster article > div { min-width: 0; }
+.member-photo { flex: 0 0 auto; width: 64px; height: 64px; object-fit: cover; }
+.member-role { margin-bottom: 10px; font-weight: 500; }
+.member-social { display: inline-flex; padding: 10px; margin: 8px 0 0 -10px; }
+.mentor-strip article > .ordinal { display: none; }
+.mentor-strip .member-photo { margin-bottom: 16px; }
+.video-embed { margin-block: 28px; min-width: 0; }
+.video-player { width: 100%; aspect-ratio: 16 / 9; background: var(--charcoal); color: var(--white); }
+.video-player iframe, .video-player video { width: 100%; height: 100%; display: block; border: 0; }
+.video-load { display: flex; flex-direction: column; gap: 12px; align-items: center; justify-content: center; width: 100%; height: 100%; padding: 24px; border: 1px solid var(--grey); background: var(--charcoal); color: var(--white); }
+.video-load strong { font-size: 18px; line-height: 1.4; }
+.video-load span { font-size: 12px; }
+.video-load:hover { background: var(--black); }
+.video-embed figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 12px; font-size: 13px; color: var(--muted); }
+.video-embed figcaption a { display: inline-flex; align-items: center; gap: 6px; }
+.journal { border-top: 1px solid var(--light-grey); }
+.journal-index { margin-top: 54px; }
+.journal-entry { display: grid; grid-template-columns: 0.55fr 1.45fr; gap: 9%; padding-block: 36px; border-top: 1px solid var(--rule); }
+.journal-entry:has(img) { grid-template-columns: 0.55fr 0.8fr 1fr; gap: 5%; }
+.journal-meta { display: flex; flex-direction: column; gap: 14px; font-size: 12px; color: var(--charcoal); }
+.journal-entry h3 a { display: flex; align-items: start; justify-content: space-between; gap: 20px; font-size: 30px; }
+.journal-entry h3 a:hover { text-decoration: underline; text-underline-offset: 6px; }
+.journal-entry h3 svg { flex: 0 0 auto; margin-top: 6px; }
+.journal-entry > div > p { margin-top: 20px; max-width: 650px; line-height: 1.65; color: var(--charcoal); }
+.journal-author { display: block; margin-top: 24px; font-size: 12px; }
+.journal-entry img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.post-inner { max-width: 840px; margin-inline: auto; }
+.post-header { padding-block: 50px 42px; }
+.post-page h1 { font-size: 54px; line-height: 1.15; overflow-wrap: anywhere; margin-block: 20px 28px; }
+.post-summary { font-size: 22px; line-height: 1.55; color: var(--charcoal); }
+.post-meta { display: flex; flex-wrap: wrap; gap: 16px 28px; margin-top: 28px; font-size: 13px; color: var(--charcoal); }
+.post-page .markdown-content { font-size: 18px; }
+.post-cover { margin-bottom: 42px; width: 100%; height: auto; }
+.post-next { margin-top: 54px; }
+@media (max-width: 700px) {
+  .hero-content { min-height: 640px; }
+  .hero-intro .markdown-content { font-size: 15px; }
+  .project-filters { width: 100%; }
+  .project-filters button { flex: 1 0 auto; padding: 10px 12px; }
+  .journal-entry, .journal-entry:has(img) { grid-template-columns: 1fr; gap: 24px; }
+  .journal-meta { flex-direction: row; flex-wrap: wrap; justify-content: space-between; }
+  .journal-entry h3 a { font-size: 26px; }
+  .post-page h1 { font-size: 36px; }
+  .post-summary { font-size: 19px; }
+  .post-header { padding-top: 36px; }
+  .post-page .markdown-content { font-size: 17px; }
+  .markdown-content h2 { font-size: 26px; }
+  .video-load { padding: 16px; }
+  .video-load strong { font-size: 15px; }
 }

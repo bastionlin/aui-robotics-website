@@ -1,12 +1,1 @@
-// Competition record, newest first. `tags` (what a project was built with) and
-// `image` (a file in src/assets/images/photos) are optional.
-export const projects = [
-  { title: 'WRO Open Championship Europe', year: 2026, category: 'World Robot Olympiad', result: '2nd place at the WRO Nationals, qualified for the Open Championship Europe', location: 'Zagreb, Croatia, October 13 to 16, 2026', description: '2nd place at the WRO National Championship in Morocco earned us a place at the WRO Open Championship Europe, where we represented Morocco in Zagreb, Croatia.', status: 'Completed' },
-  { title: 'VEX U National Championship 2024', year: 2024, category: 'VEX U', result: '1st Place', location: 'Morocco', description: '1st place at the VEX U National Championship.', status: 'Completed' },
-  { title: 'VEX U National Championship 2023', year: 2023, category: 'VEX U', result: '1st Place', location: 'Morocco', description: '1st place at the VEX U National Championship.', status: 'Completed' , image: 'vex-u-tournament-champion-2023.webp', imageWidth: 547, imageHeight: 306 },
-  { title: 'TAIPAN', year: 2022, category: 'World Robot Olympiad', result: '11th worldwide at the WRO International Final, our first global top-tier finish', location: 'Dortmund, Germany, November 17 to 19, 2022', description: 'A bio-inspired, tendon-operated continuum arm robot for underground rescue operations. Built under the motto "Every Life Matters", TAIPAN is designed to reach places rescuers cannot.', status: 'Completed' , image: 'taipan-wro.webp', imageWidth: 720, imageHeight: 1280 },
-  { title: 'VEX U National Championship 2022', year: 2022, category: 'VEX U', result: '1st Place', location: 'Morocco', description: '1st place at the VEX U National Championship.', status: 'Completed' , image: 'vex-u-skills-champion-2022.webp', imageWidth: 550, imageHeight: 357 },
-  { title: 'VEX U National Championship 2020', year: 2020, category: 'VEX U', result: '1st Place', location: 'Morocco', description: '1st place at the VEX U National Championship. The team went on to place 31st worldwide at the VEX U World Championship.', status: 'Completed' },
-  { title: 'Moonshot Mars Rover', year: 2019, category: 'Planetary Rover', result: '1st Place', location: 'Morocco', description: '1st place at the Moonshot Mars Rover competition.', status: 'Completed' },
-  { title: 'MATE ROV', year: 2018, category: 'Underwater Robotics', result: '1st Place', location: 'MENA Region', description: '1st place at the MATE ROV competition for the MENA region.', status: 'Completed' , image: 'rov-2018-regional-finals.webp', imageWidth: 1000, imageHeight: 667 },
-];
+export { projects } from '../content';
