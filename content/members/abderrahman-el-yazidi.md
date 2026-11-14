@@ -1,5 +1,5 @@
 ---
-name: Abderrahman El Yazidi
+name: Abderrahman El Yazid
 role: Sponsoring Lead
 group: leadership
 placeholder: false
